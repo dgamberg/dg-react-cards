@@ -8,9 +8,9 @@ export default class PlayerCard extends React.Component{
     //this.setState({ currentPlayer:  });
 
     render(){
-        console.log( "[Props]", this.props);
+        console.log( "[PLAYER Props]", this.props);
 
-        const currentPlayer = this.props.players[0];
+        const currentPlayer = this.props.currentPlayer;
 
         return (
             
@@ -34,7 +34,7 @@ export default class PlayerCard extends React.Component{
                         <div className='character-attack-button-container'>
                             <button 
                                 className='character-attack-button'
-                                onClick={ this.handleClick.bind(this) }
+                                onClick={ this.props.attackEnemy.bind(this, this.props.currentEnemy) }
 
                                 >ATTACK</button>
                         </div>
@@ -46,11 +46,5 @@ export default class PlayerCard extends React.Component{
             </div>
         )
     }
-
-    handleClick(){
-        console.log("clicked");
-    }
-
-
 
 }

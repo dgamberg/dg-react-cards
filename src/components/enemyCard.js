@@ -7,11 +7,9 @@ export default class EnemyCard extends React.Component{
     }
 
     render() {
-        console.log( "[Props]", this.props);
+        console.log( "[ENEMY Props]", this.props);
 
-        const currentEnemy = this.getRandomEnemy(this.props.enemies);
-        
-        currentEnemy.health = this.generateHealth(currentEnemy.skillLevel);
+        const currentEnemy = this.props.currentEnemy;
 
         return (
             
@@ -31,24 +29,15 @@ export default class EnemyCard extends React.Component{
                     <div className='monster-card-image-container'>
                         <img className='monster-card-image' src={ 'src/img/transformers/' + currentEnemy.imageUrl }/>
                     </div>
- 
+                    <div>
+                    <button className='monster-attack-button'
+                            onClick={ this.props.attackEnemy.bind(this ) }
+                            >
+                            Attack Character
+                    </button>
+                    </div>
                 </div>
             </div>
         )
     }
-
-    generateHealth(level) {
-        var min = 20;
-        var max = level * 20;
-        var healthToReturn =  Math.random() * (max - min) + min;
-        return healthToReturn.toFixed(0);
-    }
-
-    getRandomEnemy(enemies){
-        let range = enemies.length;
-        let enemyInt = Math.floor((Math.random() * range));
-        let randomEnemy = enemies[enemyInt];
-        return randomEnemy;
-    }
-   
 }
